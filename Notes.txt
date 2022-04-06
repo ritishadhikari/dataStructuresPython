@@ -1,0 +1,156 @@
+Refer:
+    - bigocheatsheet.com
+
+Big O Notation
+---------------
+
+Big O Notation is used to measure how running time or space requirements for your program grow as input size grows. 
+time = a*n + b 
+
+Rule: 
+    1. Keep Fastest Growing Term:
+        time = a*n
+    2. Drop Constant:
+        time = n
+
+Measuring Running Time Growth:
+    - Time Complexity
+Measuring Space Growth:
+    - Space Complexity
+
+
+Arrays
+---------------
+298 can be represented as 100101010. Each number is 1 bit. 
+
+When we have integer Numbers, we store it as 4 bytes. So 298 will be stored as: 
+00000000 00000000 00000001 00101010 
+
+Each address in the computer memory consists of 1 Byte. So any integer numbers will be spread across 4 bytes in 
+binary form.
+
+If the memory address of stockPrices: [298, 305, 320, 301, 292] starts with 0x00500 then to find stockPrices[2] we will
+point to the data stored in the address 0x00500 + 2*sizeOfInteger = 0x00508 as sizeOfInteger is 4 bytes.
+
+Big(O) complexity for lookUp will be O(1) (or constant time operation) as it involves simple computation 
+of address+n*sizeOfInteger
+
+Scenario:
+To find out on what day price was 301, the following python program will be used:
+    for i in stockPrices:
+        if i==301:
+            return i
+
+Since it is going through all the elements, its big(O) complexity will be O(n)
+
+Scenario: Print all the Prices
+big(O) complexity will be O(n)
+
+Scenario: Insert a new Price at given Index: ex. 284 at index 1
+    stockPrices.insert(1,284)
+Since post the insert, the remainder of all the positions of the elements will take a new address, 
+big(O) complexity will be O(n)
+
+Scenario: Deleting Element at index 1
+    stockPrices.remove(1)
+Since post the delete, the remainder of the elements will take a new address, 
+big(O) complexity will be O(n)
+
+In Python, list is implemented as dynamic array while in other languages like Java, C++, we have static as
+well as dynamic arrays. 
+
+In Static Arrays, we cannot insert elements beyond its size. The program will allocate the memory only for that fixed
+size. 
+
+But for dynamic array, when we create an array object, the program will allocate some initial capacity in the memory.
+When a new element gets added to the object, then the object will increase its memory size by double (size n+size 2n) 
+and the elements are copied from the old location to the new location. 
+
+Hence when dynamic arrays grow, there is an overhead of allocating new memory and copying all the elements. The
+increase of the memory size of the dynamic array is Geometric Progression (10=10, 10+10*2=30, 30+30*2=90)
+
+
+Linked List
+---------------
+When you create an emptly list in Python, internally in the memory it will allocate some capacity for that list. 
+And when the capacity becomes full, a new memory area has to be allotted and the older data has to be copied.
+
+In a Linked List, First Element has a reference to the address of the next element. When a new element is 
+inserted, the reference address of the new element is changed for the previous element and the new inserted element
+now contains the reference address of the next element. 
+
+Complexity: 
+    - Insert Element at beginning = O(1)
+    - Delete Element at beginning = O(1)
+    - Insert/Delete Element at the end = O(n)
+    - Traversal through each Element = O(n)
+    - Accessing Element by Value = O(n)
+    - Indexing = O(n) # Disadvantage with respect to an array
+
+Benefits of Linked List:
+    - You do not need to pre-allocate space
+    - Insertion is easier
+
+
+Hash Table
+---------------
+Hash Function converts your string key into an index into an array
+
+Dictionaries are Python Specific Implementation of Hash Tables. 
+
+Complexity: 
+    Look Up by Key = O(1)
+    Insertion/Deletion = O(1)
+    
+Stack
+---------
+
+Stack is a Last in First Out (LIFO) data structure, where we keep on pushing the elements and once we want to pop, 
+it will pop out the last element you pushed. 
+
+Complexity:     
+    - Push/Pop: O(1)
+    - Search element by value: O(n)
+
+Use cases of Stack:
+    - Function Calling in any programming Language is managed using a Stack
+    - Undo (Ctrl+Z) functionality in any editor uses stack to track down last set of operations.
+
+
+Queue
+---------
+
+Queue allows you to establish loose coupling. This problem is also called as Producer/Consumer Problem.
+
+Here whatever is pushed first in the buffer is consumed first. Hence it is called FIFO (First In First Out) data
+structure. 
+
+Tree (General Tree)
+-------------------------
+
+Tree is a Recursive DataStructure. Where each Node happens to be a Tree in itself.
+
+Binary Tree
+---------------
+
+In a Binary Tree, Every Node has at most 2 Child Nodes. 
+
+Binary Search Tree is a special Kind of Binary Tree, where the elements have some kind of order.
+
+In a Binary Search Tree, elements are not duplicated.  
+
+Search Complexity in a Binary Tree is O(log n). 
+
+Aprroches to a Binary Search Tree:
+    - Breadth First Search:
+    - Depth First Search
+        - In Order Traversal: Data Should be sorted (Left To Right)
+        - Pre order Traversal: Data starts from root base node, then elements from one way is selected and then the
+        elements from the other way are taken.
+        - Post Order Traversal: First the elements from the leaf are taken along with the parent, and then the
+        other leafs with their parents are taken.
+
+Graph Introduction
+---------------------
+
+In a Tree, there is only one path between the two nodes. Tree is a special type of a Graph. 
