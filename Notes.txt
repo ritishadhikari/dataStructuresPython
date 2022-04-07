@@ -154,3 +154,9 @@ Graph Introduction
 ---------------------
 
 In a Tree, there is only one path between the two nodes. Tree is a special type of a Graph. 
+
+Binary Search
+---------------------
+
+In every iteration, we are dividing our search space by half. 
+
