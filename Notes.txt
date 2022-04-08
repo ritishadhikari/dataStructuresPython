@@ -160,3 +160,6 @@ Binary Search
 
 In every iteration, we are dividing our search space by half. 
 
+Time Complexity for Binary Search is of the order log(N)
+
+
