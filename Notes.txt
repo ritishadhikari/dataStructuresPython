@@ -162,4 +162,15 @@ In every iteration, we are dividing our search space by half.
 
 Time Complexity for Binary Search is of the order log(N)
 
+Bubble Sort
+------------------
+Time Complexity: O(n**2)
+Space Complexity=O(1)
 
+
+Insertion Sort
+------------------
+Worst Case Performance: O(n**2)
+Best Case performance: O(n) comparisions, O(1) swaps
+Average Performance: O(n**2) comparisions and swaps
+Worst-case complexity: O(n) total, O(1) auxiliary 
