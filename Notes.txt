@@ -174,3 +174,33 @@ Worst Case Performance: O(n**2)
 Best Case performance: O(n) comparisions, O(1) swaps
 Average Performance: O(n**2) comparisions and swaps
 Worst-case complexity: O(n) total, O(1) auxiliary 
+
+Selection Sort:
+-----------------
+
+Big(O) complexity: O(n**2)
+
+Quick Sort
+---------------
+
+This is a divide and conquer sorting by putting a pivot in the right position.
+
+The process of putting a pivot in a right position is known as partitioning. 
+
+In Hoare's Partition, we try to find a Start Pointer which is greater than the pivot and we try to find an 
+End Pointer which is lesser than the pivot, and once we find both, we swap both the values
+
+In Lomuto's partition, we move the partitioned index to the right until it is greater than the pivot 
+initially situated right most.
+
+Average Time Complexity: O(nlogn)
+
+Worst Case time Complexity: O(n**2)
+
+
+
+
+
+
+
+
