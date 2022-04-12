@@ -197,7 +197,35 @@ Average Time Complexity: O(nlogn)
 
 Worst Case time Complexity: O(n**2)
 
+Merge Sort
+---------------
+If we have two sorted arrays, creating a single sorted array out of it is very easy
 
+Time Complexity: O(n log n)
+
+Shell Sort
+-------------------
+In an Insertion Sort, when small elements are towards the end, it takes many:
+    - comparisions
+    - swaps
+
+In Shell Sort, we tend to move the heavier element on the right hand side. 
+
+Shell sort uses the concept of a gap. Sorting is then performed on the arrays contained by 
+the gaps.
+
+The Popular approach for shell sort is:
+    - Start with gap = n/2 and sort sub arrays
+    - Keep reducing gap by n/2 in and keep on sorting subarrays
+    - Last iteration should have gap = 1. At this point it is same as insertion sort.
+
+Big O Complexity:
+    Worst Case: O(n**2), worst known worst case gap sequence
+                O(n log**2n), best known worst case gap sequence
+    Best Case: O(n log n), most gap sequences
+               O(n log**2n), best known worst case gap sequence
+
+    
 
 
 
