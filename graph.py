@@ -9,40 +9,72 @@ class Graph:
                 self.graph_direct[start]=[end]
         print(f"Graph Dict: {self.graph_direct}")
 
-    def getPaths(self, start, end, path=[]):
-        path = path + [start]
-        if start == end:
+    # def getPaths(self, start, end, path=[]):
+    #     path = path + [start]
+    #     if start == end:
+    #         return [path]
+    #     if start not in self.graph_direct:
+    #         return []
+
+    #     paths = []
+    #     for node in self.graph_direct[start]:
+    #         if node not in path:
+    #             newPaths = self.getPaths(start=node, end=end, path=path)
+    #             for p in newPaths:
+    #                 paths.append(p)
+
+    #     return paths
+
+    # def getShortestPath(self, start, end, path=[]):
+    #     path = path + [start]
+
+    #     if start == end:
+    #         return path
+
+    #     if start not in self.graph_direct:
+    #         return None
+
+    #     shortestPath = None
+    #     for node in self.graph_direct[start]:
+    #         if node not in path:
+    #             sp = self.getShortestPath(start=node, end=end, path=path)
+    #             if sp:
+    #                 if shortestPath is None or len(sp) < len(shortestPath):
+    #                     shortestPath = sp
+
+    #     return shortestPath
+
+    def getShortestPath(self,start,end,path=[]):
+        path=path+[start]
+        if start==end:
             return [path]
         if start not in self.graph_direct:
             return []
-
-        paths = []
-        for node in self.graph_direct[start]:
+       
+        paths=[]
+        for index,node in enumerate(self.graph_direct[start]):
             if node not in path:
-                newPaths = self.getPaths(start=node, end=end, path=path)
-                for p in newPaths:
-                    paths.append(p)
+                newPath=self.getShortestPath(start=node,end=end,path=path)
+                if newPath:
+                    lengthOfNewPath=len(newPath[0])
+                else:
+                    lengthOfNewPath=0
 
-        return paths
+                if not paths:
+                    minLengthinPaths=0
+                else:
+                    minLengthinPaths=len(paths[0])
 
-    def getShortestPath(self, start, end, path=[]):
-        path = path + [start]
+                if minLengthinPaths and lengthOfNewPath:
+                    if lengthOfNewPath<minLengthinPaths:
+                        paths.pop()
+                        for p in newPath:
+                            paths.append(p)
+                else:
+                    for p in newPath:
+                        paths.append(p)
+        return paths            
 
-        if start == end:
-            return path
-
-        if start not in self.graph_direct:
-            return None
-
-        shortestPath = None
-        for node in self.graph_direct[start]:
-            if node not in path:
-                sp = self.getShortestPath(start=node, end=end, path=path)
-                if sp:
-                    if shortestPath is None or len(sp) < len(shortestPath):
-                        shortestPath = sp
-
-        return shortestPath
 
 if __name__=="__main__":
     routes = [
@@ -51,9 +83,11 @@ if __name__=="__main__":
         ("Paris", "Dubai",),
         ("Paris", "New York",),
         ("Dubai", "New York",),
+        ("Dubai", "Yumthang",),
         ("New York", "Toronto",),
+        ("New York", "Yumthang")
     ]
 
     route_graph = Graph(edges=routes)
 
-    route_graph.getPaths(start="Mumbai", end="New York")
+    print(route_graph.getShortestPath(start="Paris", end="Yumthang"))
