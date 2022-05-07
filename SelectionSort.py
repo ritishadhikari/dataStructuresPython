@@ -16,5 +16,4 @@ def selectionSort(array):
 
 if __name__=="__main__":
     element=[38, 7,	29,	9, 2, 15, 7,28,3,83]
-    element=[]
     print(selectionSort(element))

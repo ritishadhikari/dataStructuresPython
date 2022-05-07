@@ -9,21 +9,21 @@ class Graph:
                 self.graph_direct[start]=[end]
         print(f"Graph Dict: {self.graph_direct}")
 
-    # def getPaths(self, start, end, path=[]):
-    #     path = path + [start]
-    #     if start == end:
-    #         return [path]
-    #     if start not in self.graph_direct:
-    #         return []
+    def getPaths(self, start, end, path=[]):
+        path = path + [start]
+        if start == end:
+            return [path]
+        if start not in self.graph_direct:
+            return []
 
-    #     paths = []
-    #     for node in self.graph_direct[start]:
-    #         if node not in path:
-    #             newPaths = self.getPaths(start=node, end=end, path=path)
-    #             for p in newPaths:
-    #                 paths.append(p)
+        paths = []
+        for node in self.graph_direct[start]:
+            if node not in path:
+                newPaths = self.getPaths(start=node, end=end, path=path)
+                for p in newPaths:
+                    paths.append(p)
 
-    #     return paths
+        return paths
 
     # def getShortestPath(self, start, end, path=[]):
     #     path = path + [start]
@@ -67,7 +67,7 @@ class Graph:
 
                 if minLengthinPaths and lengthOfNewPath:
                     if lengthOfNewPath<minLengthinPaths:
-                        paths.pop()
+                        paths=[]
                         for p in newPath:
                             paths.append(p)
                 else:
@@ -90,4 +90,4 @@ if __name__=="__main__":
 
     route_graph = Graph(edges=routes)
 
-    print(route_graph.getShortestPath(start="Paris", end="Yumthang"))
+    print(route_graph.getPaths(start="Paris", end="Yumthang"))

@@ -1,5 +1,5 @@
 import time
-
+import numpy as np
 
 def timeit(func):
     def execFunc(*args, **kwargs):
@@ -19,26 +19,63 @@ def shellSort(elements):
         start=0
         while start<gapSize:
             for i in range(start+gapSize,size,gapSize):
-                for j in range(i-gapSize,i,gapSize):
-                    if elements[i] < elements[j]:
-                        swapVal=elements[i]
-                        elements[i]=elements[j]
-                        elements[j]=swapVal     
+                if elements[i]<elements[i-gapSize]:
+                    elements[i],elements[i-gapSize]=elements[i-gapSize],elements[i]
             start+=1 
         gapSize-=1
-
     return elements
 
-# @timeit
-def insertionSort2(array):
-    size=len(array)
+@timeit
+def insertionSort(elements):
+    size=len(elements)
     for i in range(1,size):
-        for j in range(i-1,i):
-            if array[i]<array[j]:
-                swapVal=array[j]
-                array[j]=array[i]
-                array[i]=swapVal
+        for j in range(0,i):
+            if elements[i]<elements[j]:
+                swapVal=elements[j]
+                elements[j]=elements[i]
+                elements[i]=swapVal
+    return elements
+
+def swapPos(array,index):
+    swapVal=array[index+1]
+    array[index+1]=array[index]
+    array[index]=swapVal
     return array
+
+@timeit
+def bubbleSort3(elements):
+    arr=elements.copy()
+    for indexi, i in enumerate(arr):
+        j=0
+        swap=False
+        while j<len(arr)-1-indexi:
+            if arr[j]>arr[j+1]:
+                arr=swapPos(array=arr,index=j)
+                swap=True
+            else:
+                pass
+            j+=1
+        if not swap:
+            break
+    return arr
+
+@timeit
+def selectionSort(elements):
+    size=len(elements)
+    for i in range(size-1):
+        candidate=elements[i]  # candidate is the minimum element
+        swap=False
+        for j in range(i+1,size):
+            if elements[j]<candidate:
+                candidate=elements[j]
+                index=j
+                swap=True
+        if swap:
+            swapVal=elements[i]
+            elements[i]=candidate
+            elements[index]=swapVal
+    return elements
+
 
 @timeit
 def mergeSort(elements):
@@ -73,9 +110,15 @@ def mergeSort(elements):
 
         return elementsCP
 
+
 if __name__=="__main__":
     
     element=[38, 7,	29,	9, 2, 15, 28]
-    element=[29,7,38,9,2,15,28]
-    element=[38,9,4,29,17,32,21]
-    print(mergeSort(elements=element))
+    np.random.seed=45
+    lst=np.random.randint(low=2, high=1000000,size=10000)
+
+    # print(shellSort(elements=lst.copy()))
+    # print(insertionSort(elements=lst.copy()))
+    # print(bubbleSort3(elements=lst.copy()))
+    # print(selectionSort(elements=lst.copy()))
+    print(mergeSort(elements=lst.copy()))
